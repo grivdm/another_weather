@@ -14,6 +14,7 @@ class CityView extends StatelessWidget {
     var formattedDate =
         DateTime.fromMillisecondsSinceEpoch(forecastList![0].dt! * 1000);
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Text(
           '$city, $country',

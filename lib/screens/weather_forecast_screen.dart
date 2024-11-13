@@ -1,6 +1,8 @@
 import 'package:another_weather/api/openweather_api.dart';
 import 'package:another_weather/models/weather_forecast.dart';
 import 'package:another_weather/widgets/city_view.dart';
+import 'package:another_weather/widgets/today_view.dart';
+import 'package:another_weather/widgets/week_view.dart';
 import 'package:flutter/material.dart';
 
 class WeatherForecastScreen extends StatefulWidget {
@@ -12,12 +14,16 @@ class WeatherForecastScreen extends StatefulWidget {
 
 class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
   late Future<WeatherForecast> forecast;
-  String _cityName = 'London';
+  String _cityName = 'Toronto';
 
   @override
   void initState() {
     super.initState();
     forecast = OpenweatherApi().fetchCityWeatherForecast(cityName: _cityName);
+
+    forecast.then((weather) {
+      print(weather);
+    });
   }
 
   @override
@@ -39,7 +45,16 @@ class _WeatherForecastScreenState extends State<WeatherForecastScreen> {
               future: forecast,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return CityView(weatherSnapshot: snapshot);
+                  return Column(
+                    children: [
+                      CityView(weatherSnapshot: snapshot),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TodayView(snapshot),
+                      WeekView(snapshot)
+                    ],
+                  );
                 } else {
                   return const Center(child: CircularProgressIndicator());
                 }

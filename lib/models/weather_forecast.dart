@@ -1,3 +1,5 @@
+import 'package:another_weather/utilities/constants.dart';
+
 class WeatherForecast {
   City? city;
   String? cod;
@@ -26,8 +28,8 @@ class WeatherForecast {
       data['city'] = city!.toJson();
     }
     data['cod'] = cod;
-    data['message'] = message;
-    data['cnt'] = cnt;
+    data['message'] = message?.toDouble();
+    data['cnt'] = cnt?.toInt();
     if (list != null) {
       data['list'] = list!.map((v) => v.toJson()).toList();
     }
@@ -52,12 +54,12 @@ class City {
       this.timezone});
 
   City.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = json['id']?.toInt();
     name = json['name'];
     coord = json['coord'] != null ? Coord.fromJson(json['coord']) : null;
     country = json['country'];
-    population = json['population'];
-    timezone = json['timezone'];
+    population = json['population']?.toInt();
+    timezone = json['timezone']?.toInt();
   }
 
   Map<String, dynamic> toJson() {
@@ -87,8 +89,8 @@ class Coord {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['lon'] = lon;
-    data['lat'] = lat;
+    data['lon'] = lon?.toDouble();
+    data['lat'] = lat?.toDouble();
     return data;
   }
 }
@@ -124,26 +126,26 @@ class DailyWeather {
       this.pop});
 
   DailyWeather.fromJson(Map<String, dynamic> json) {
-    dt = json['dt'];
-    sunrise = json['sunrise'];
-    sunset = json['sunset'];
+    dt = json['dt']?.toInt();
+    sunrise = json['sunrise']?.toInt();
+    sunset = json['sunset']?.toInt();
     temp = json['temp'] != null ? Temp.fromJson(json['temp']) : null;
     feelsLike = json['feels_like'] != null
         ? FeelsLike.fromJson(json['feels_like'])
         : null;
-    pressure = json['pressure'];
-    humidity = json['humidity'];
+    pressure = json['pressure']?.toInt();
+    humidity = json['humidity']?.toInt();
     if (json['weather'] != null) {
       weather = <Weather>[];
       json['weather'].forEach((v) {
         weather!.add(Weather.fromJson(v));
       });
     }
-    speed = json['speed'];
-    deg = json['deg'];
-    gust = json['gust'];
-    clouds = json['clouds'];
-    pop = json['pop'];
+    speed = json['speed']?.toDouble();
+    deg = json['deg']?.toInt();
+    gust = json['gust']?.toDouble();
+    clouds = json['clouds']?.toInt();
+    pop = json['pop']?.toInt();
   }
 
   Map<String, dynamic> toJson() {
@@ -169,6 +171,11 @@ class DailyWeather {
     data['pop'] = pop;
     return data;
   }
+
+  String getIconUrl() {
+    print('https://${Constants.IMAGES_URL}${weather![0].icon}.png');
+    return 'https://${Constants.IMAGES_URL}${weather![0].icon}.png';
+  }
 }
 
 class Temp {
@@ -182,22 +189,22 @@ class Temp {
   Temp({this.day, this.min, this.max, this.night, this.eve, this.morn});
 
   Temp.fromJson(Map<String, dynamic> json) {
-    day = json['day'];
-    min = json['min'];
-    max = json['max'];
-    night = json['night'];
-    eve = json['eve'];
-    morn = json['morn'];
+    day = json['day'].toDouble();
+    min = json['min'].toDouble();
+    max = json['max'].toDouble();
+    night = json['night'].toDouble();
+    eve = json['eve'].toDouble();
+    morn = json['morn'].toDouble();
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['day'] = day;
-    data['min'] = min;
-    data['max'] = max;
-    data['night'] = night;
-    data['eve'] = eve;
-    data['morn'] = morn;
+    data['day'] = day?.toDouble();
+    data['min'] = min?.toDouble();
+    data['max'] = max?.toDouble();
+    data['night'] = night?.toDouble();
+    data['eve'] = eve?.toDouble();
+    data['morn'] = morn?.toDouble();
     return data;
   }
 }
@@ -211,18 +218,18 @@ class FeelsLike {
   FeelsLike({this.day, this.night, this.eve, this.morn});
 
   FeelsLike.fromJson(Map<String, dynamic> json) {
-    day = json['day'];
-    night = json['night'];
-    eve = json['eve'];
-    morn = json['morn'];
+    day = json['day'].toDouble();
+    night = json['night'].toDouble();
+    eve = json['eve'].toDouble();
+    morn = json['morn'].toDouble();
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['day'] = day;
-    data['night'] = night;
-    data['eve'] = eve;
-    data['morn'] = morn;
+    data['day'] = day?.toDouble();
+    data['night'] = night?.toDouble();
+    data['eve'] = eve?.toDouble();
+    data['morn'] = morn?.toDouble();
     return data;
   }
 }
