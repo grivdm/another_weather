@@ -5,7 +5,7 @@ import 'package:another_weather/models/weather_forecast.dart';
 import 'package:another_weather/utilities/constants.dart';
 
 class OpenweatherApi {
-  Future<WeatherForecast> fetchCityWeatherForecast(
+  static Future<WeatherForecast> fetchCityWeatherForecast(
       {required String cityName}) async {
     var queryParameters = {
       'units': 'metric',

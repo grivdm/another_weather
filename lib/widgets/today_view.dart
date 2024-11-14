@@ -13,7 +13,7 @@ class TodayView extends StatelessWidget {
     final String temperature = todayForecast.temp!.day!.toStringAsFixed(0);
     final String description = todayForecast.weather![0].description!;
     return Column(
-      children: [
+      children: <Widget>[
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -28,7 +28,7 @@ class TodayView extends StatelessWidget {
               ),
             ),
             Column(
-              children: [
+              children: <Widget>[
                 Text(
                   '$temperature °C',
                   style: const TextStyle(fontSize: 42, color: Colors.black87),
@@ -62,9 +62,9 @@ class TodayView extends StatelessWidget {
   }
 }
 
-Column _todayInfoItem(IconData iconData, int value, String units) {
+Widget _todayInfoItem(IconData iconData, int value, String units) {
   return Column(
-    children: [
+    children: <Widget>[
       Icon(
         iconData,
         color: Colors.black87,

@@ -173,7 +173,6 @@ class DailyWeather {
   }
 
   String getIconUrl() {
-    print('https://${Constants.IMAGES_URL}${weather![0].icon}.png');
     return 'https://${Constants.IMAGES_URL}${weather![0].icon}.png';
   }
 }

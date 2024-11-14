@@ -18,9 +18,10 @@ class WeekView extends StatelessWidget {
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
           ),
         ),
-        Container(
+        SizedBox(
           height: 147,
           child: ListView.separated(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return Container(
