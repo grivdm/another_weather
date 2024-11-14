@@ -11,6 +11,13 @@ class ChooseCityScreen extends StatefulWidget {
 class _ChooseCityScreenState extends State<ChooseCityScreen> {
   final TextEditingController _cityNamecontroller = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _cityNamecontroller.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
