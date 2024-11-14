@@ -12,7 +12,7 @@ class WeatherForecast {
   WeatherForecast.fromJson(Map<String, dynamic> json) {
     city = json['city'] != null ? City.fromJson(json['city']) : null;
     cod = json['cod'];
-    message = json['message'];
+    message = json['message'].toDouble();
     cnt = json['cnt'];
     if (json['list'] != null) {
       list = <DailyWeather>[];
@@ -83,8 +83,8 @@ class Coord {
   Coord({this.lon, this.lat});
 
   Coord.fromJson(Map<String, dynamic> json) {
-    lon = json['lon'];
-    lat = json['lat'];
+    lon = json['lon'].toDouble();
+    lat = json['lat'].toDouble();
   }
 
   Map<String, dynamic> toJson() {

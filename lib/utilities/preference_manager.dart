@@ -1,11 +1,12 @@
+import 'package:another_weather/utilities/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class PreferencesManager {
-  static const String defaultCityName = 'New York';
+class PreferenceManager {
+  static const String _defaultCityName = Constants.DEFAULT_CITY;
   static const String keyCityName = 'city_name';
-  static final PreferencesManager _instance = PreferencesManager._internal();
-  factory PreferencesManager() => _instance;
-  PreferencesManager._internal();
+  static final PreferenceManager _instance = PreferenceManager._internal();
+  factory PreferenceManager() => _instance;
+  PreferenceManager._internal();
 
   SharedPreferencesWithCache? _prefs;
 
@@ -21,6 +22,6 @@ class PreferencesManager {
   }
 
   String getCityName() {
-    return _prefs?.getString(keyCityName) ?? defaultCityName;
+    return _prefs?.getString(keyCityName) ?? _defaultCityName;
   }
 }

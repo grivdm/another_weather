@@ -8,7 +8,6 @@ class WeekView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var weekItem =
     return Column(
       children: [
         const Padding(
@@ -35,6 +34,9 @@ class WeekView extends StatelessWidget {
                     width: 10,
                   ),
               itemCount: weatherSnapshot.data!.list!.length),
+        ),
+        const SizedBox(
+          height: 10,
         ),
       ],
     );
